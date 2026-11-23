@@ -45,7 +45,7 @@ docker compose up -d --build --wait
 | db | PostgreSQL 16，持久卷保存档案、执行、证据及审计 |
 | redis | Redis 7，追加日志卷保存队列唤醒信号 |
 
-编辑 `backend/src/services/domain.py` 可修改试算方法与业务表单说明。API 路由、数据定义和页面位于 `backend/src/routes/`、`backend/src/models/` 与 `frontend/src/pages/`。开发时更新源文件后重新构建对应服务。
+转授链解析与合同版本处理位于 `backend/src/services/chains.py`，补件批次状态机位于 `backend/src/services/supplements.py`，窗口合并 SQL 位于 `backend/src/services/rights_sql.py`。编辑 `backend/src/services/domain.py` 可修改试算方法与业务表单说明。单元测试覆盖链规则与补件状态机；设置 `TEST_DATABASE_URL=postgresql+psycopg://app:local-db-demo@db:5432/workflow` 可一并跑整算例：`docker compose exec -T -e TEST_DATABASE_URL=postgresql+psycopg://app:local-db-demo@db:5432/workflow backend python -m unittest discover -s tests -t .`。API 路由、数据定义和页面位于 `backend/src/routes/`、`backend/src/models/` 与 `frontend/src/pages/`。开发时更新源文件后重新构建对应服务。
 
 `.env.example` 提供 `FRONTEND_PORT`、`BACKEND_PORT`、`DB_PORT`、`DB_PASSWORD`、`AUTH_KEY` 、`SEED_DEMO` 与 `NETWORK_SUBNET`。修改 `NETWORK_SUBNET` 可避开本机现有容器网段。所有发布的端口绑定本机回环地址。接入独立部署前需配置自己的凭据并按业务范围做独立验收。
 

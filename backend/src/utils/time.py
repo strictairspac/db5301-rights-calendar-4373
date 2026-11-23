@@ -1,4 +1,6 @@
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime, timedelta, timezone
+
+DESK_TIMEZONE = timezone(timedelta(hours=8))
 
 
 def utc_time(seconds=0):
